@@ -1,0 +1,2 @@
+db.users.insert({username:"admin", shaPassword:BinData(0,"sQnzu7wkTrgkQZF+0G1hi5AI3Qmzvv0bXgc5THBqi7mAsdd4Xll27ASbRt9fEyavWi6m0QP9B8lThf+rDKy8hg=="), creationDate : ISODate("2016-04-27T06:42:48.291Z")})
+db.users.ensureIndex({"username" : 1},{"unique": true , "sparse": true})
