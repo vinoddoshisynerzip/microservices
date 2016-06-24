@@ -10,4 +10,18 @@ RUN chmod +x /home/rezoomex/setup/GATE-8.1-developer-8.1.jar
 ADD gate_installation.xml setup/gate_installation.xml
 RUN java -jar /home/rezoomex/setup/GATE-8.1-developer-8.1.jar /home/rezoomex/setup/gate_installation.xml
 
+# Install play
+ENV ACTIVATOR_VERSION 1.3.9
+WORKDIR /tmp
+RUN wget http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/typesafe-activator-${ACTIVATOR_VERSION}.zip && \
+    unzip typesafe-activator-${ACTIVATOR_VERSION}.zip && \
+    mv activator-dist-${ACTIVATOR_VERSION} /opt/activator && \
+    chown -R play:play /opt/activator && \
+    rm typesafe-activator-${ACTIVATOR_VERSION}.zip
+
+RUN echo "export PATH=$PATH:/opt/activator/bin" >> /home/rezoomex/.bashrc    
+
+EXPOSE 9000
+EXPOSE 9999
+EXPOSE 8888
 CMD ["bash"]
